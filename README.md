@@ -1,1 +1,2 @@
-This is repositony of 652110255-Samit Yaibua 
+# hcg-chaper-1
+This is repository of 560651023-HCG-chapter1
