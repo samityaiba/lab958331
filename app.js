@@ -1,36 +1,10 @@
-const http = require('http')
-const fs = require('fs')
-
-const PORT = 3000
-
-const server = http.createServer((req,res) => {
-
-    switch (req.url) {
-
-        case '/':
-          fs.readFile('./bubble.html',(error,data) => {
-            res.statusCode = 200
-            res.setHeader('Content-Type','text/html')
-            res.end(data)
-          })
-          break
-    
-        case '/hello':
-          fs.readFile('./hello.html',(error,data) => {
-            res.statusCode = 200
-            res.setHeader('Content-Type','text/html')
-            res.end(data)
-          })
-          break
-    
-        default:
-          res.statusCode = 404
-          res.setHeader('Content-Type','text/html')
-          res.end('Not found!')
-      }
-})
-
-server.listen(PORT,() => {
-  console.log('Server is running... http://127.0.0.1:3000/')
-})
-
+let http = require('http');
+let url = require('url');
+http.createServer(function (req, res) {
+res.writeHead(200, {'Content-Type': 'text/html'});
+/*Use the url module to turn the querystring into an object:*/
+var q = url.parse(req.url, true).query;
+/*Return the year and month from the query object:*/
+var txt = q.name + " <br/> " + q.month+q.year;
+res.end(txt);
+}).listen(9999);
